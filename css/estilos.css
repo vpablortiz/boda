@@ -740,6 +740,14 @@ button, input { font: inherit; color: inherit; }
 
 .seccion.regalo { padding: 60px 24px 76px; overflow: clip; }
 
+/* Pablo y Chusquita, recortados, asomando por encima del sobre. */
+.chusquita {
+  display: block;
+  width: 200px;
+  height: auto;
+  margin: 28px auto -40px;
+}
+
 .sobre-zona { position: relative; width: 100%; max-width: 300px; margin: 0 auto; padding-top: 150px; }
 
 .toca-sobre {
