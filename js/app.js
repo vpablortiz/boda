@@ -3,7 +3,7 @@
   'use strict';
 
   const BODA = new Date('2027-05-01T12:30:00+02:00').getTime();
-  const IBAN = '[IBAN pendiente]';
+  const IBAN = 'ES7715830001139143486074';
   const COLORES_PETALO = ['#F4B6CF', '#E98AB1', '#F1E0A0', '#F7C9DA', '#D9729E', '#F4B6CF', '#F1E0A0', '#E98AB1'];
   const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -166,7 +166,6 @@
     botonEnviar.addEventListener('click', () => {
       const datos = {
         slug,
-        cancion: $('#cancion').value.trim(),
         personas: invitacion.personas.map((nombre, i) => {
           const r = respuestas[nombre];
           const viene = r.asiste === 'si';
