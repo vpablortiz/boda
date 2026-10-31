@@ -740,14 +740,6 @@ button, input { font: inherit; color: inherit; }
 
 .seccion.regalo { padding: 60px 24px 76px; overflow: clip; }
 
-/* Pablo y Chusquita, recortados, asomando por encima del sobre. */
-.chusquita {
-  display: block;
-  width: 200px;
-  height: auto;
-  margin: 28px auto -40px;
-}
-
 .sobre-zona { position: relative; width: 100%; max-width: 300px; margin: 0 auto; padding-top: 150px; }
 
 .toca-sobre {
@@ -863,12 +855,28 @@ button, input { font: inherit; color: inherit; }
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Pablo y Chusquita esperan dentro del sobre; al abrirlo salen por arriba y se quedan a un lado. */
+.chusquita {
+  position: absolute;
+  left: calc(50% - 60px);
+  top: 20px;
+  width: 120px;
+  height: auto;
+  max-width: none;
+  z-index: 2;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  pointer-events: none;
+}
+
+.sobre.abierto .chusquita { animation: salir-chusquita 1.5s cubic-bezier(.3, .9, .4, 1) 1.3s both; }
+
 .sobre.abierto .sobre-solapa { transform: rotateX(180deg); z-index: 1; }
 .sobre.abierto .sobre-carta { transform: translateY(-150px); }
 .sobre.abierto .sello { opacity: 0; }
 
 .regalo-nota {
-  margin: 36px auto 0;
+  margin: 64px auto 0;
   max-width: 300px;
   text-align: center;
   font-size: 18px;
@@ -969,6 +977,13 @@ button, input { font: inherit; color: inherit; }
 @keyframes mecer { 0%, 100% { transform: rotate(14deg); } 50% { transform: rotate(11deg); } }
 @keyframes mecer2 { 0%, 100% { transform: rotate(196deg); } 50% { transform: rotate(199deg); } }
 @keyframes latido { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.07); } }
+@keyframes salir-chusquita {
+  0% { opacity: 0; z-index: 2; transform: translate(0, 40px) scale(.5) rotate(0deg); }
+  15% { opacity: 1; }
+  45% { z-index: 2; transform: translate(110px, -120px) scale(.85) rotate(-6deg); }
+  46% { z-index: 6; }
+  100% { opacity: 1; z-index: 6; transform: translate(115px, 40px) scale(1) rotate(8deg); }
+}
 @keyframes estallido {
   from { transform: translateY(0) scale(.4) rotate(0deg); opacity: 1; }
   to { transform: translateY(-84px) scale(1) rotate(140deg); opacity: 0; }
@@ -979,4 +994,5 @@ button, input { font: inherit; color: inherit; }
   .entra, .rama-1, .rama-2, .sello, .desliza svg, .historia-sigue svg { animation: none !important; }
   .js .revelar { opacity: 1; transform: none; transition: none; }
   .capitulo, .capitulo-imagen img, .capitulo-texto, .capitulo-final { transition: none !important; }
+  .sobre.abierto .chusquita { animation: none; opacity: 1; z-index: 6; transform: translate(115px, 40px) rotate(8deg); }
 }
